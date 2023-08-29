@@ -1,0 +1,5 @@
+package com.swkim.myboard.entity;
+
+public class UserEntity {
+
+}

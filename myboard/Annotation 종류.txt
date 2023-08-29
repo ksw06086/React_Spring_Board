@@ -1,0 +1,8 @@
+Annotation 종류
+@GeneratedValue(strategy=전략) - 기본키를 자동으로 생성해주는 어노테이션
+			strategy - IDENTITY :
+					AUTO_INCREMENT
+				 - SEQUENCE :
+					오라클, Postgre 시퀀스 지원
+				 - TABLE : 
+					키 생성 전용 테이블 만들고 이름, 값을 만들어서 시퀀스를 흉내내는 것
