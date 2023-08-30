@@ -1,0 +1,3 @@
+@RestController 해당 클래스를 Rest한 형태의 Controller 레이어로 인식하도록 함
+
+@Controller에서는 @ResponseBody를 추가해야 데이터를 보내줄 수 있음 @RestController는 두개가 합쳐있는 형태임
