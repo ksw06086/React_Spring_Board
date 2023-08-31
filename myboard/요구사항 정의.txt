@@ -5,6 +5,12 @@ React + Spring Boot + MySQL
 <요구사항>
 - 사용자 
 ㅁ 회원가입 진행
+|| 요청
+-- POST 
+-- /api/auth/signUp 
+-- body(userEmail, userPassword, userPasswordCheck, userNickname, userPhoneNumber, userAddress, userAddressDetail)
+|| 반환
+-- result, message, data { token, exprTime(완료시간) }
 + 이메일 주소, 비밀번호, 비밀번호 확인, 닉네임, 핸드폰 번호, 주소, 상세 주소 => 회원가입
 + 회원가입 성공시 로그인
 ㅁ 로그인 

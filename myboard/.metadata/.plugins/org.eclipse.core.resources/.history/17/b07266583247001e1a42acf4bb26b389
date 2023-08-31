@@ -1,0 +1,13 @@
+package com.swkim.myboard.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+public class ResponseDto<D> {
+	private boolean result;
+	private String message;
+	private D data;
+}
