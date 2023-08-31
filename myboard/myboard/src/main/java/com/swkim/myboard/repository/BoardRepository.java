@@ -7,5 +7,5 @@ import com.swkim.myboard.entity.BoardEntity;
 
 @Repository
 public interface BoardRepository extends JpaRepository<BoardEntity, Integer> {
-
+	
 }

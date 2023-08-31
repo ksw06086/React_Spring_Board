@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.swkim.myboard.dto.ResponseDto;
+import com.swkim.myboard.dto.SignInDto;
+import com.swkim.myboard.dto.SignInResponseDto;
 import com.swkim.myboard.dto.SignUpDto;
 import com.swkim.myboard.service.AuthService;
 
@@ -19,6 +21,12 @@ public class AuthController {
 	@PostMapping("signup")
 	public ResponseDto<?> signUp( @RequestBody SignUpDto requestBody ){
 		ResponseDto<?> result = authService.signUp(requestBody);
+		return result;
+	}
+	
+	@PostMapping("signin")
+	public ResponseDto<SignInResponseDto> signIn( @RequestBody SignInDto requestBody ){
+		ResponseDto<SignInResponseDto> result = authService.signIn(requestBody);
 		return result;
 	}
 }

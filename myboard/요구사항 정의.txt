@@ -7,13 +7,19 @@ React + Spring Boot + MySQL
 ㅁ 회원가입 진행
 || 요청
 -- POST 
--- /api/auth/signUp 
+-- /api/auth/signup
 -- body(userEmail, userPassword, userPasswordCheck, userNickname, userPhoneNumber, userAddress, userAddressDetail)
 || 반환
 -- result, message, data { token, exprTime(완료시간) }
 + 이메일 주소, 비밀번호, 비밀번호 확인, 닉네임, 핸드폰 번호, 주소, 상세 주소 => 회원가입
 + 회원가입 성공시 로그인
 ㅁ 로그인 
+|| 요청
+-- POST
+-- /api/auth/signin
+-- body(userEmail, userPassword)
+|| 반환
+-- result, message, data { accessToken, exprTime, user }
 + 이메일과 패스워드로 로그인
 + 로그인 성공 시 메인 화면으로 이동
 ㅁ 메인 화면
