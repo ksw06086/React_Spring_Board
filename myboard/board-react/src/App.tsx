@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import './App.css';
-import Athentication from './views/Athentication';
+import MainLayout from './views/layouts/MainLayout';
 
 function App() {
   return (
     <div className="App">
-      <Athentication />
+      <MainLayout />
     </div>
   );
 }
