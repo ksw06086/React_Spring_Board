@@ -28,22 +28,24 @@ React + Spring Boot + MySQL
 -- GET /api/board/top3
 || 반환
 -- result, message, data { boardEntity[] }
+|| SQL : SELECT * FROM Board WHERE board_write_date >= ? ORDER BY board_likes_cnt DESC LIMIT 3;
 + 주간 Top3 게시글이 보임 : 좋아요 순으로 정렬   
 
 || 요청
 -- GET /api/board/list
 || 반환
 -- result, message, data { boardEntity[] }
+|| SQL : SELECT * FROM Board ORDER BY board_write_date DESC;
 + 최신 게시물이 리스트 형식으로 출력됨  
 
 + 1페이지에 5개씩 게시물이 보이게 함   => // front
 + 페이징 처리 됨, 최대 10페이지까지, 이전/이후 섹션으로 이동하는 방향 버튼   => // front
 ㅁ 인기 검색어
-
 || 요청
 -- GET /api/board/popularsearchlist
 || 반환
 -- result, message, data { PopularSearchEntity[] }
+|| SQL : SELECT * FROM Pppularsearch ORDER BY popular_search_cnt DESC LIMIT 10;
 + 우측에 항상 존재하도록 함    
 ㅁ 네비게이션 바
 + 검색 기능, 마이페이지 이동
