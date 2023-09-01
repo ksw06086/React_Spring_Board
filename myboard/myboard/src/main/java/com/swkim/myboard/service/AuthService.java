@@ -1,6 +1,8 @@
 package com.swkim.myboard.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.swkim.myboard.dto.ResponseDto;
@@ -15,8 +17,9 @@ import com.swkim.myboard.security.TokenProvider;
 public class AuthService {
 	
 	@Autowired UserRepository userRepository;
-	
 	@Autowired TokenProvider tokenProvider;
+	
+	private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
 	// 회원가입
 	public ResponseDto<?> signUp(SignUpDto dto){
@@ -43,6 +46,10 @@ public class AuthService {
 		// UserEntity 생성
 		UserEntity userEntity = new UserEntity(dto);
 		
+		// 비밀번호 암호화
+		String encodedPassword = passwordEncoder.encode(userPassword);
+		userEntity.setUserPassword(encodedPassword);
+		
 		// UserRepository를 이용해서 데이터베이스에 Entity 저장!!
 		try {
 			userRepository.save(userEntity);
@@ -59,16 +66,14 @@ public class AuthService {
 		String userEmail = dto.getUserEmail();
 		String userPassword = dto.getUserPassword();
 		
-		try {
-			boolean existed = userRepository.existsByUserEmailAndUserPassword(userEmail, userPassword);
-			if(!existed) return ResponseDto.setFailed("Sign In Information Does Not Match!");
-		} catch (Exception e) {
-			return ResponseDto.setFailed("Data Base Error!");
-		}
-		
 		UserEntity userEntity = null;
 		try {
-			userEntity = userRepository.findById(userEmail).get();
+			userEntity = userRepository.findByUserEmail(userEmail);
+			// 잘못된 이메일
+			if(userEntity == null) return ResponseDto.setFailed("Email Sign In Failed!");
+			// 잘못된 패스워드
+			if(!passwordEncoder.matches(userPassword, userEntity.getUserPassword()))
+				return ResponseDto.setFailed("Password Sign In Failed!");
 		} catch (Exception e) {
 			return ResponseDto.setFailed("Data Base Error!");
 		}
