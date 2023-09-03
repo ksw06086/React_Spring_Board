@@ -1,0 +1,5 @@
+package com.swkim.myboard.dto;
+
+public class PatchUserDto {
+
+}

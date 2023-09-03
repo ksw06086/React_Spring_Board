@@ -48,9 +48,28 @@ React + Spring Boot + MySQL
 || SQL : SELECT * FROM Pppularsearch ORDER BY popular_search_cnt DESC LIMIT 10;
 + 우측에 항상 존재하도록 함    
 ㅁ 네비게이션 바
-+ 검색 기능, 마이페이지 이동
+|| 요청
+-- GET /api/board/search/{boardTitle}
+|| 반환
+-- result, message, data { BoardEntity[] }
+|| SQL : SELECT * FROM Board WHERE board_title LIKE %?%;
++ 검색 기능
++ 마이페이지 이동
 ㅁ 마이페이지
+|| 요청
+-- PATCH /api/user/
+-- Request Header : Authorization Bearer token
+-- Request Body : userNickname: string, userProfile: string
+|| 반환
+-- result, message, data { user }
+|| 요청 순서
+1. Bearer token에서 userEmail 꺼내옴
+2. 꺼내온 userEmail로 데이터베이스에서 검색
+=> SELECT * FROM User WHERE user_email = ?;
+3. 검색된 user Entity에 받아온 userNickname, userProfile로 각각 변경
+4. 변경된 user Entity를 저장
 + 프로필 사진 수정, 닉네임 수정   
+
 + 게시물 등록
 ++ 등록 시 : 제목, 내용, 사진, 동영상, 파일 올릴 수 있음
 ㅁ 게시물 리스트

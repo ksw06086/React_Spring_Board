@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.swkim.myboard.dto.PatchResponseDto&apos; to &apos;PatchUserResponseDto&apos;&#x0D;&#x0A;- Original project: &apos;myboard&apos;&#x0D;&#x0A;- Original element: &apos;com.swkim.myboard.dto.PatchResponseDto&apos;&#x0D;&#x0A;- Renamed element: &apos;com.swkim.myboard.dto.PatchUserResponseDto&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;PatchResponseDto&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/gradle_scope=/main=/=/gradle_used_by_scope=/main,test=/&lt;com.swkim.myboard.dto{PatchResponseDto.java[PatchResponseDto" matchStrategy="1" name="PatchUserResponseDto" qualified="false" references="true" similarDeclarations="false" stamp="1693717153604" textual="false" version="1.0"/>
+</session>
