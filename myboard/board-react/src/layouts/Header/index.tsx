@@ -72,6 +72,13 @@ export default function Header() {
         );
     }
 
+    // component: 로그인 또는 마이페이지 버튼 컴포넌트 //
+    const LoginMyPageButton = () => {
+
+        // render: 로그인 버튼 컴포넌트 랜더링 //
+        return <div className='black-button'>{'로그인'}</div>;
+    }
+
     // render: 헤더 레이아웃 랜더링 //
     return (
         <div id='header'>
@@ -84,6 +91,7 @@ export default function Header() {
                 </div>
                 <div className='header-right-box'>
                     <SearchButton />
+                    <LoginMyPageButton />
                 </div>
             </div>
         </div>
