@@ -31,7 +31,7 @@ public class SignUpRequestDto {
     @NotNull(message = "동의는 필수입니다.") @AssertTrue // True인 값만 받게 해줌
     private Boolean agreedPersonal;
 
-    @Builder
+    @Builder(toBuilder = true)
     private SignUpRequestDto(String email, String password, String nickname, String telNumber, String address, String addressDetail, Boolean agreedPersonal) {
         this.email = email;
         this.password = password;
