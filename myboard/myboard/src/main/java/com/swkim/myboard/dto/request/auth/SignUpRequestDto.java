@@ -1,9 +1,11 @@
 package com.swkim.myboard.dto.request.auth;
 
+import com.swkim.myboard.entity.UserEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.catalina.User;
 
 import javax.validation.constraints.*;
 
@@ -31,14 +33,15 @@ public class SignUpRequestDto {
     @NotNull(message = "동의는 필수입니다.") @AssertTrue // True인 값만 받게 해줌
     private Boolean agreedPersonal;
 
-    @Builder(toBuilder = true)
-    private SignUpRequestDto(String email, String password, String nickname, String telNumber, String address, String addressDetail, Boolean agreedPersonal) {
-        this.email = email;
-        this.password = password;
-        this.nickname = nickname;
-        this.telNumber = telNumber;
-        this.address = address;
-        this.addressDetail = addressDetail;
-        this.agreedPersonal = agreedPersonal;
+    public UserEntity memberEntity(String encodePassword) {
+        return UserEntity.builder()
+                .email(this.email)
+                .password(encodePassword)
+                .nickname(this.nickname)
+                .telNumber(this.telNumber)
+                .address(this.address)
+                .addressDetail(this.addressDetail)
+                .agreedPersonal(this.agreedPersonal)
+                .build();
     }
 }

@@ -54,6 +54,7 @@ CREATE TABLE user
   address        TEXT         NOT NULL COMMENT '사용자 주소',
   address_detail TEXT         NULL     COMMENT '사용자 상세 주소',
   profile_image  TEXT         NULL     COMMENT '사용자 프로필 사진 URL',
+  agreed_personal BOOLEAN     NOT NULL COMMENT '개인정보 동의 여부',
   PRIMARY KEY (email)
 ) COMMENT '사용자 테이블';
 
