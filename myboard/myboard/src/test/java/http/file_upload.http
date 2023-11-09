@@ -1,0 +1,73 @@
+### Image File Upload
+POST http://localhost:9000/file/upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="background.jpg"
+Content-Type: image/jpeg
+
+< C:/Users/k-sun/Downloads/background.jpg
+--WebAppBoundary--
+
+### Excel File Upload
+POST http://localhost:9000/file/excel-upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="example.xlsx"
+Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+
+< C:/Users/k-sun/Downloads/example.xlsx
+--WebAppBoundary--
+
+### PDF File Upload
+POST http://localhost:9000/file/pdf-upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="example.pdf"
+Content-Type: application/pdf
+
+< C:/Users/k-sun/Downloads/example.pdf
+--WebAppBoundary--
+
+### HWP File Upload
+POST http://localhost:9000/file/hwp-upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="example.hwp"
+Content-Type: application/x-hwp
+
+< C:/Users/k-sun/Downloads/example.hwp
+--WebAppBoundary--
+
+### Word File Upload
+POST http://localhost:9000/file/word-upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="example.docx"
+Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+< C:/Users/k-sun/Downloads/example.docx
+--WebAppBoundary--
+
+### PowerPoint File Upload
+POST http://localhost:9000/file/ppt-upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="example.pptx"
+Content-Type: application/vnd.openxmlformats-officedocument.presentationml.presentation
+
+< C:/Users/k-sun/Downloads/example.pptx
+--WebAppBoundary--
+
+### image 파일 : Content-Type은 업로드하려는 이미지의 타입에 맞게 설정해야 합니다 (예: image/jpeg, image/png 등
+### excel 파일 : Content-Type은 엑셀 파일의 MIME 타입입니다. .xlsx 파일의 경우 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, .xls 파일의 경우 application/vnd.ms-excel를 사용
+### pdf 파일 : Content-Type은 PDF 파일의 MIME 타입인 application/pdf를 사용
+### hwp 파일 : Content-Type은 HWP 파일의 MIME 타입인 application/x-hwp를 사용
+### word 파일 : Content-Type은 .docx 파일의 MIME 타입인 application/vnd.openxmlformats-officedocument.wordprocessingml.document를 사용합니다. 만약 .doc 파일을 업로드하는 경우, application/msword를 사용
+### ppt 파일 : Content-Type은 .pptx 파일의 MIME 타입인 application/vnd.openxmlformats-officedocument.presentationml.presentation를 사용합니다. 만약 .ppt 파일을 업로드하는 경우, application/vnd.ms-powerpoint를 사용
+### byte 타입 배열 객체(이진 파일) : contentType = MediaType.APPLICATION_OCTET_STREAM

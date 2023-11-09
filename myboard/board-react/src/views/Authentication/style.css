@@ -3,7 +3,7 @@
     min-width: 1440px;
     /* - 헤더 높이 - 위 padding 높이 - 아래 padding 높이 */
     height: calc(100vh - 68px - 100px - 150px);
-    min-height: 240px;
+    min-height: 800px;
 
     display: flex;
     justify-content: center;
@@ -150,4 +150,41 @@
     color: rgba(0, 0, 0, 1);
     cursor: pointer;
     font-weight: 600;
+}
+
+.auth-consent-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.auth-check-box {
+    cursor: pointer;
+
+    width: 24px;
+    height: 24px;
+}
+
+.auth-consent-title {
+    color: rgba(0, 0, 0, 0.7);
+
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+.auth-consent-title-error {
+    color: rgba(255, 0, 0, 0.7);
+
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+.auth-consent-link {
+    color: rgba(0, 0, 0, 1);
+
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 140%;
 }
