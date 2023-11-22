@@ -1,16 +1,13 @@
 package com.swkim.myboard.dto.request.auth;
 
 import com.swkim.myboard.entity.UserEntity;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.apache.catalina.User;
 
 import javax.validation.constraints.*;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class SignUpRequestDto {
 
     @NotBlank(message = "이메일은 필수입니다.") @Email
