@@ -1,5 +1,5 @@
 use board;
-drop table image;
+drop table favorite;
 ALTER TABLE board
 CHANGE COLUMN write_date_time write_datetime DATETIME;
         
@@ -28,9 +28,9 @@ CREATE TABLE comment
 
 CREATE TABLE favorite
 (
-  email        VARCHAR(50) NOT NULL COMMENT '사용자 이메일',
+  user_email        VARCHAR(50) NOT NULL COMMENT '사용자 이메일',
   board_number INT         NOT NULL COMMENT '게시물 번호',
-  PRIMARY KEY (email, board_number)
+  PRIMARY KEY (user_email, board_number)
 ) COMMENT '좋아요 테이블';
 
 CREATE TABLE image
@@ -75,7 +75,7 @@ ALTER TABLE board
 
 ALTER TABLE favorite
   ADD CONSTRAINT FK_user_TO_favorite
-    FOREIGN KEY (email)
+    FOREIGN KEY (user_email)
     REFERENCES user (email);
 
 ALTER TABLE favorite

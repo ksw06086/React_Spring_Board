@@ -1,3 +1,6 @@
+### 게시물 상세정보 조회 api
+GET http://localhost:9000/api/v1/board/4
+
 ### 게시물 작성
 POST http://localhost:9000/api/v1/board
 Content-Type: application/json
@@ -11,6 +14,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpY
     "http://localhost:9000/file/b774c575-3128-46b9-b671-b60707390681.jpg"
   ]
 }
+
+### 좋아요 기능 API
+PUT http://localhost:9000/api/v1/board/4/favorite
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3MDA3MzQxNzcsImV4cCI6MTcwMDczNzc3N30.lxX6A36O8-_MScL4bNSLmijmI_AyDU_XBzllMnBn0IE
 
 ### 게시물 작성 파일과 데이터 같이 요청
 POST http://localhost:9000/api/v1/board

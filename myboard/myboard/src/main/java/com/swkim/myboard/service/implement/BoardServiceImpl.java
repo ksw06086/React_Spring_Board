@@ -2,12 +2,17 @@ package com.swkim.myboard.service.implement;
 
 import com.swkim.myboard.dto.request.board.PostBoardRequestDto;
 import com.swkim.myboard.dto.response.ResponseDto;
+import com.swkim.myboard.dto.response.board.GetBoardResponseDto;
 import com.swkim.myboard.dto.response.board.PostBoardResponseDto;
+import com.swkim.myboard.dto.response.board.PutFavoriteResponseDto;
 import com.swkim.myboard.entity.BoardEntity;
+import com.swkim.myboard.entity.FavoriteEntity;
 import com.swkim.myboard.entity.ImageEntity;
 import com.swkim.myboard.repository.BoardRepository;
+import com.swkim.myboard.repository.FavoriteRepository;
 import com.swkim.myboard.repository.ImageRepository;
 import com.swkim.myboard.repository.UserRepository;
+import com.swkim.myboard.repository.resultSet.GetBoardResultSet;
 import com.swkim.myboard.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +28,33 @@ public class BoardServiceImpl implements BoardService {
     private final UserRepository userRepository;
     private final BoardRepository boardRepository;
     private final ImageRepository imageRepository;
+    private final FavoriteRepository favoriteRepository;
+
+    @Override
+    public ResponseEntity<? super GetBoardResponseDto> getBoard(Integer boardNumber) {
+
+        GetBoardResultSet resultSet = null;
+        List<ImageEntity> imageEntities = new ArrayList<>();
+
+        try {
+
+            resultSet = boardRepository.getBoard(boardNumber);
+            if(resultSet == null) return GetBoardResponseDto.notExistBoard();
+
+            imageEntities = imageRepository.findByBoardNumber(boardNumber);
+
+            // ORM 기법 사용해서 값 update
+            BoardEntity boardEntity = boardRepository.findByBoardNumber(boardNumber);
+            boardEntity.increaseViewCount();
+            boardRepository.save(boardEntity);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+        return GetBoardResponseDto.success(resultSet, imageEntities);
+    }
 
     @Override
     public ResponseEntity<? super PostBoardResponseDto> postBoard(PostBoardRequestDto dto, String email) {
@@ -42,12 +74,44 @@ public class BoardServiceImpl implements BoardService {
             }
 
             imageRepository.saveAll(imageEntities);
-        } catch (Exception exception) {
-            exception.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
             return ResponseDto.databaseError();
         }
 
         return PostBoardResponseDto.success();
+    }
+
+    @Override
+    public ResponseEntity<? super PutFavoriteResponseDto> putFavorite(Integer boardNumber, String email) {
+
+        try {
+
+            boolean existedUser = userRepository.existsByEmail(email);
+            if(!existedUser) return PutFavoriteResponseDto.noExistUser();
+
+            BoardEntity boardEntity = boardRepository.findByBoardNumber(boardNumber);
+            if(boardEntity == null) return PutFavoriteResponseDto.noExistBoard();
+
+            FavoriteEntity favoriteEntity = favoriteRepository.findByBoardNumberAndUserEmail(boardNumber, email);
+            if (favoriteEntity == null) {
+                favoriteEntity = new FavoriteEntity(email, boardNumber);
+                favoriteRepository.save(favoriteEntity);
+                boardEntity.increaseFavoriteCount();
+            }
+            else {
+                favoriteRepository.delete(favoriteEntity);
+                boardEntity.decreaseFavoriteCount();
+            }
+
+            boardRepository.save(boardEntity);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+        return PutFavoriteResponseDto.success();
     }
 
 }
