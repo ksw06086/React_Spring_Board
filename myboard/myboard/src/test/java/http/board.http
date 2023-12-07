@@ -1,7 +1,10 @@
 ### 게시물 상세정보 조회 api
 GET http://localhost:9000/api/v1/board/4
 
-### 게시물 작성
+### 게시물 좋아요 리스트 조회 api
+GET http://localhost:9000/api/v1/board/4/favorite-list
+
+### 게시물 작성 api
 POST http://localhost:9000/api/v1/board
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3MDA1NDMxMzAsImV4cCI6MTcwMDU0NjczMH0.mo9mZ8ibV1kAFQXImO-iZSpS8CohQ12iOGzvvscgOXI
@@ -15,10 +18,19 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpY
   ]
 }
 
+### 댓글 작성 api
+POST http://localhost:9000/api/v1/board/4/comment
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3MDA1NDMxMzAsImV4cCI6MTcwMDU0NjczMH0.mo9mZ8ibV1kAFQXImO-iZSpS8CohQ12iOGzvvscgOXI
+
+{
+  "comment": "내용입니다."
+}
+
 ### 좋아요 기능 API
 PUT http://localhost:9000/api/v1/board/4/favorite
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3MDA3MzQxNzcsImV4cCI6MTcwMDczNzc3N30.lxX6A36O8-_MScL4bNSLmijmI_AyDU_XBzllMnBn0IE
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3MDEzMDUzNTUsImV4cCI6MTcwMTMwODk1NX0.ajOsBCXu6bUlSPI_PdSZrf7l6gtr0BVA4gkefevXWzo
 
 ### 게시물 작성 파일과 데이터 같이 요청
 POST http://localhost:9000/api/v1/board

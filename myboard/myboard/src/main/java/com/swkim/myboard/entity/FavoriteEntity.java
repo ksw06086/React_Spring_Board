@@ -1,5 +1,6 @@
 package com.swkim.myboard.entity;
 
+import com.swkim.myboard.entity.primeryKey.FavoritePk;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,11 +1,11 @@
 package com.swkim.myboard.service.implement;
 
 import com.swkim.myboard.dto.request.board.PostBoardRequestDto;
+import com.swkim.myboard.dto.request.board.PostCommentRequestDto;
 import com.swkim.myboard.dto.response.ResponseDto;
-import com.swkim.myboard.dto.response.board.GetBoardResponseDto;
-import com.swkim.myboard.dto.response.board.PostBoardResponseDto;
-import com.swkim.myboard.dto.response.board.PutFavoriteResponseDto;
+import com.swkim.myboard.dto.response.board.*;
 import com.swkim.myboard.entity.BoardEntity;
+import com.swkim.myboard.entity.CommentEntity;
 import com.swkim.myboard.entity.FavoriteEntity;
 import com.swkim.myboard.entity.ImageEntity;
 import com.swkim.myboard.repository.BoardRepository;
@@ -13,6 +13,7 @@ import com.swkim.myboard.repository.FavoriteRepository;
 import com.swkim.myboard.repository.ImageRepository;
 import com.swkim.myboard.repository.UserRepository;
 import com.swkim.myboard.repository.resultSet.GetBoardResultSet;
+import com.swkim.myboard.repository.resultSet.GetFavoriteListResultSet;
 import com.swkim.myboard.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -57,6 +58,25 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    public ResponseEntity<? super GetFavoriteListResponseDto> getFavoriteList(Integer boardNumber) {
+        List<GetFavoriteListResultSet> resultSets = new ArrayList<>();
+
+        try {
+
+            boolean existedBoard = boardRepository.existsById(boardNumber);
+            if (!existedBoard) return GetFavoriteListResponseDto.noExistBoard();
+
+            resultSets = favoriteRepository.getFavoriteList(boardNumber);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+        return GetFavoriteListResponseDto.success(resultSets);
+    }
+
+    @Override
     public ResponseEntity<? super PostBoardResponseDto> postBoard(PostBoardRequestDto dto, String email) {
         try {
             boolean existedEmail = userRepository.existsByEmail(email);
@@ -80,6 +100,24 @@ public class BoardServiceImpl implements BoardService {
         }
 
         return PostBoardResponseDto.success();
+    }
+
+    @Override
+    public ResponseEntity<? super PostCommentResponseDto> postComment(PostCommentRequestDto dto, Integer boardNumber, String email) {
+        try {
+            boolean existedBoard = boardRepository.existsById(boardNumber);
+            if (!existedBoard) return PostCommentResponseDto.noExistBoard();
+
+            boolean existedUser = userRepository.existsByEmail(email);
+            if (!existedUser) return PostCommentResponseDto.noExistUser();
+
+            CommentEntity commentEntity = new CommentEntity(dto, boardNumber, email);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+        return PostCommentResponseDto.success();
     }
 
     @Override

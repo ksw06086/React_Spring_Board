@@ -1,4 +1,4 @@
-package com.swkim.myboard.entity;
+package com.swkim.myboard.entity.primeryKey;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

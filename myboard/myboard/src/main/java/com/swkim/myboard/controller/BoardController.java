@@ -2,6 +2,7 @@ package com.swkim.myboard.controller;
 
 import com.swkim.myboard.dto.request.board.PostBoardRequestDto;
 import com.swkim.myboard.dto.response.board.GetBoardResponseDto;
+import com.swkim.myboard.dto.response.board.GetFavoriteListResponseDto;
 import com.swkim.myboard.dto.response.board.PostBoardResponseDto;
 import com.swkim.myboard.dto.response.board.PutFavoriteResponseDto;
 import com.swkim.myboard.service.BoardService;
@@ -24,6 +25,14 @@ public class BoardController {
         @PathVariable("boardNumber") Integer boardNumber
     ) {
         ResponseEntity<? super GetBoardResponseDto> response = boardService.getBoard(boardNumber);
+        return response;
+    }
+
+    @GetMapping("/{boardNumber}/favorite-list")
+    public ResponseEntity<? super GetFavoriteListResponseDto> getFavoriteList(
+        @PathVariable("boardNumber") Integer boardNumber
+    ) {
+        ResponseEntity<? super GetFavoriteListResponseDto> response = boardService.getFavoriteList(boardNumber);
         return response;
     }
 
