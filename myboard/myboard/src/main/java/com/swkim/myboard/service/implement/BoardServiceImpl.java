@@ -8,10 +8,7 @@ import com.swkim.myboard.entity.BoardEntity;
 import com.swkim.myboard.entity.CommentEntity;
 import com.swkim.myboard.entity.FavoriteEntity;
 import com.swkim.myboard.entity.ImageEntity;
-import com.swkim.myboard.repository.BoardRepository;
-import com.swkim.myboard.repository.FavoriteRepository;
-import com.swkim.myboard.repository.ImageRepository;
-import com.swkim.myboard.repository.UserRepository;
+import com.swkim.myboard.repository.*;
 import com.swkim.myboard.repository.resultSet.GetBoardResultSet;
 import com.swkim.myboard.repository.resultSet.GetFavoriteListResultSet;
 import com.swkim.myboard.service.BoardService;
@@ -30,6 +27,7 @@ public class BoardServiceImpl implements BoardService {
     private final BoardRepository boardRepository;
     private final ImageRepository imageRepository;
     private final FavoriteRepository favoriteRepository;
+    private final CommentRepository commentRepository;
 
     @Override
     public ResponseEntity<? super GetBoardResponseDto> getBoard(Integer boardNumber) {
@@ -105,13 +103,18 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public ResponseEntity<? super PostCommentResponseDto> postComment(PostCommentRequestDto dto, Integer boardNumber, String email) {
         try {
-            boolean existedBoard = boardRepository.existsById(boardNumber);
-            if (!existedBoard) return PostCommentResponseDto.noExistBoard();
+            BoardEntity boardEntity = boardRepository.findByBoardNumber(boardNumber);
+            if (boardEntity == null) return PostCommentResponseDto.noExistBoard();
 
             boolean existedUser = userRepository.existsByEmail(email);
             if (!existedUser) return PostCommentResponseDto.noExistUser();
 
             CommentEntity commentEntity = new CommentEntity(dto, boardNumber, email);
+            commentRepository.save(commentEntity);
+
+            boardEntity.increaseCommentCount();
+            boardRepository.save(boardEntity);
+
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseDto.databaseError();

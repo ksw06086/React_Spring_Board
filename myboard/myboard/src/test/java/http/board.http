@@ -21,7 +21,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpY
 ### 댓글 작성 api
 POST http://localhost:9000/api/v1/board/4/comment
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3MDA1NDMxMzAsImV4cCI6MTcwMDU0NjczMH0.mo9mZ8ibV1kAFQXImO-iZSpS8CohQ12iOGzvvscgOXI
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3MDI2MjY5NDcsImV4cCI6MTcwMjYzMDU0N30.zP5EjOpHeAlfmK2dGyPb3ou9FQCmrNhYeu6Oi9PKAys
 
 {
   "comment": "내용입니다."
