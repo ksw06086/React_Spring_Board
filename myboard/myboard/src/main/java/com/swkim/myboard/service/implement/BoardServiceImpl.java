@@ -10,6 +10,7 @@ import com.swkim.myboard.entity.FavoriteEntity;
 import com.swkim.myboard.entity.ImageEntity;
 import com.swkim.myboard.repository.*;
 import com.swkim.myboard.repository.resultSet.GetBoardResultSet;
+import com.swkim.myboard.repository.resultSet.GetCommentListResultSet;
 import com.swkim.myboard.repository.resultSet.GetFavoriteListResultSet;
 import com.swkim.myboard.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -72,6 +73,26 @@ public class BoardServiceImpl implements BoardService {
         }
 
         return GetFavoriteListResponseDto.success(resultSets);
+    }
+
+    @Override
+    public ResponseEntity<? super GetCommentListResponseDto> getCommentList(Integer boardNumber) {
+
+        List<GetCommentListResultSet> resultSets = new ArrayList<>();
+
+        try {
+
+            boolean existedBoard = boardRepository.existsById(boardNumber);
+            if(!existedBoard) return GetCommentListResponseDto.noExistBoard();
+
+            resultSets = commentRepository.getCommentList(boardNumber);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+        return GetCommentListResponseDto.success(resultSets);
     }
 
     @Override

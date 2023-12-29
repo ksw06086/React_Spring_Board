@@ -1,0 +1,14 @@
+#board-detail-wrapper {
+    padding: 100px 0;
+
+    display: flex;
+    justify-content: center;
+}
+
+.board-detail-container {
+    width: 996px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
