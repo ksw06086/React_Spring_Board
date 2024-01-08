@@ -1,19 +1,39 @@
 import React, { useEffect, useState } from 'react'
 import './style.css'
 import FavoriteItem from 'components/FavoriteItem'
-import { CommentListItem, FavoriteListItem } from 'types/interface'
+import { Board, CommentListItem, FavoriteListItem } from 'types/interface'
 import { commentListMock, favoriteListMock } from 'mocks'
 import CommentItem from 'components/CommentItem'
 import Pagination from 'components/Pagination'
 import defaultProfileImage from 'assets/image/user.png'
+import { useLoginUserStore } from 'stores'
+import { useNavigate, useParams } from 'react-router-dom'
+import { USER_PATH } from 'constant'
 
 // component: 게시물 상세 화면 컴포넌트 //
 export default function BoardDetail() {
+
+    // state: 게시물 번호 path variable 상태       //
+    const { boardNumber } = useParams();
+    // state: 로그인 유저 상태                     //
+    const { loginUser } = useLoginUserStore();
+
+    // function: 네비게이트 함수     //
+    const navigator = useNavigate();
+
     // component: 게시물 상세 상단 컴포넌트 //
     const BoardDetailTop = () => {
 
+      // state : //
+      const [board, setBoard] = useState<Board | null>(null)
       // state: more 버튼 상태     //
       const [showMore, setShowMore] = useState<boolean>(false)
+
+      // event handler: 닉네임 클릭 이벤트 처리   //
+      const onNicknameClickHandler = () => {
+        if (!board) return;
+        navigator(USER_PATH(board.writerEmail))
+      }
 
       // event handler: more 버튼 클릭 이벤트 처리   //
       const onMoreButtonClickHandler = () => {
@@ -21,14 +41,15 @@ export default function BoardDetail() {
       }
 
       // render: 게시물 상세 상단 컴포넌트 랜더링 //
+      if (!board) return <></>
       return (
         <div id='board-detail-top'>
           <div className='board-detail-top-header'>
             <div className='board-detail-title'>{'오늘 점심 뭐먹지 맛있는거 먹고 싶다.'}</div>
             <div className='board-detail-top-sub-box'>
               <div className='board-detail-write-info-box'>
-                <div className='board-detail-writer-profile-image' style={{ backgroundImage: `url(${defaultProfileImage})`}}></div>
-                <div className='board-detail-writer-nickname'>{'nickname'}</div>
+                <div className='board-detail-writer-profile-image' style={{ backgroundImage: `url(${board?.writerProfileImage ? board.writerProfileImage : defaultProfileImage})`}}></div>
+                <div className='board-detail-writer-nickname' onClick={onNicknameClickHandler}>{'nickname'}</div>
                 <div className='board-detail-info-divider'>{'\|'}</div>
                 <div className='board-detail-write-date'>{'2022. 05. 12.'}</div>
               </div>
