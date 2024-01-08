@@ -3,6 +3,10 @@
     width: 100%;
 }
 
+.amphasis {
+    font-weight: bolder;
+}
+
 .icon-box {
     width: 24px;
     height: 24px;
@@ -172,4 +176,28 @@
 
 .close-icon {
     background-image: url(assets/image/close.png);
+}
+
+.more-icon {
+    background-image: url(assets/image/more.png);
+}
+
+.favorite-fill-icon {
+    background-image: url(assets/image/favorite-fill.png);
+}
+
+.favorite-light-icon {
+    background-image: url(assets/image/favorite-light.png);
+}
+
+.up-light-icon {
+    background-image: url(assets/image/expand-up-light.png);
+}
+
+.down-light-icon {
+    background-image: url(assets/image/expand-down-light.png);
+}
+
+.comment-icon {
+    background-image: url(assets/image/chat-light.png);
 }

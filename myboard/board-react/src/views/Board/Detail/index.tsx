@@ -5,37 +5,49 @@ import { CommentListItem, FavoriteListItem } from 'types/interface'
 import { commentListMock, favoriteListMock } from 'mocks'
 import CommentItem from 'components/CommentItem'
 import Pagination from 'components/Pagination'
+import defaultProfileImage from 'assets/image/user.png'
 
 // component: 게시물 상세 화면 컴포넌트 //
 export default function BoardDetail() {
     // component: 게시물 상세 상단 컴포넌트 //
     const BoardDetailTop = () => {
+
+      // state: more 버튼 상태     //
+      const [showMore, setShowMore] = useState<boolean>(false)
+
+      // event handler: more 버튼 클릭 이벤트 처리   //
+      const onMoreButtonClickHandler = () => {
+        setShowMore(!showMore);
+      }
+
       // render: 게시물 상세 상단 컴포넌트 랜더링 //
       return (
         <div id='board-detail-top'>
           <div className='board-detail-top-header'>
             <div className='board-detail-title'>{'오늘 점심 뭐먹지 맛있는거 먹고 싶다.'}</div>
             <div className='board-detail-top-sub-box'>
-              <div className='board-detail-wrtie-info-box'>
-                <div className='board-detail-writer-profile-image'></div>
+              <div className='board-detail-write-info-box'>
+                <div className='board-detail-writer-profile-image' style={{ backgroundImage: `url(${defaultProfileImage})`}}></div>
                 <div className='board-detail-writer-nickname'>{'nickname'}</div>
                 <div className='board-detail-info-divider'>{'\|'}</div>
                 <div className='board-detail-write-date'>{'2022. 05. 12.'}</div>
               </div>
-              <div className='icon-button'>
+              <div className='icon-button' onClick={onMoreButtonClickHandler}>
                 <div className='icon more-icon'></div>
               </div>
+              {showMore &&
               <div className='board-detail-more-box'>
                 <div className='board-detail-update-button'>{'수정'}</div>
                 <div className='divider'></div>
                 <div className='board-detail-delete-button'>{'삭제'}</div>
               </div>
+              }
             </div>
           </div>
           <div className='divider'></div>
           <div className='board-detail-top-main'>
             <div className='board-detail-main-text'>{'오늘 점심 뭐먹을 지 너무 고민이 되는데 뭐 먹을까? 나 점심 때'}</div>
-            <div className='board-detail-main-image'></div>
+            <img className='board-detail-main-image' src='https://i.pinimg.com/originals/b8/fc/12/b8fc120f8fd33f3b2f2e4417c1343987.jpg' />
           </div>
         </div>
       )
@@ -55,7 +67,7 @@ export default function BoardDetail() {
       return (
         <div id='board-detail-bottom'>
           <div className='board-detail-bottom-button-box'>
-            <div className='board=detail-bottom-button-group'>
+            <div className='board-detail-bottom-button-group'>
               <div className='icon-button'>
                 <div className='icon favorite-fill-icon'></div>
               </div>
@@ -64,7 +76,7 @@ export default function BoardDetail() {
                 <div className='icon up-light-icon'></div>
               </div>
             </div>
-            <div className='board=detail-bottom-button-group'>
+            <div className='board-detail-bottom-button-group'>
               <div className='icon-button'>
                 <div className='icon comment-icon'></div>
               </div>
@@ -93,7 +105,7 @@ export default function BoardDetail() {
             <div className='board-detail-bottom-comment-pagination-box'>
               <Pagination />
             </div>
-            <div className='board-detail-bottom-comment-input-container'>
+            <div className='board-detail-bottom-comment-input-box'>
               <div className='board-detail-bottom-comment-input-container'>
                 <textarea className='board-detail-bottom-comment-textarea' placeholder='댓글을 작성해주세요.' />
                 <div className='board-detail-bottom-comment-button-box'>
