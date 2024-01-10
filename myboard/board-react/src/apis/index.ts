@@ -47,6 +47,7 @@ export const signUpRequest = async (requestBody: SignUpRequestDto) => {
     return result;
 }
 
+const GET_BOARD_URL = (boardNumber: number) => `${API_DOMAIN}/board/${boardNumber}`
 const POST_BOARD_URL = () => `${API_DOMAIN}/board`;
 
 export const postBoardRequest = async (requestBody: PostBoardRequestDto, accessToken: string) => {
