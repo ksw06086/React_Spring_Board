@@ -43,11 +43,6 @@ public class BoardServiceImpl implements BoardService {
 
             imageEntities = imageRepository.findByBoardNumber(boardNumber);
 
-            // ORM 기법 사용해서 값 update
-            BoardEntity boardEntity = boardRepository.findByBoardNumber(boardNumber);
-            boardEntity.increaseViewCount();
-            boardRepository.save(boardEntity);
-
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseDto.databaseError();
@@ -174,6 +169,24 @@ public class BoardServiceImpl implements BoardService {
         }
 
         return PutFavoriteResponseDto.success();
+    }
+
+    @Override
+    public ResponseEntity<? super IncreaseViewCountResponseDto> increaseViewCount(Integer boardNumber) {
+
+        try {
+            // ORM 기법 사용해서 값 update
+            BoardEntity boardEntity = boardRepository.findByBoardNumber(boardNumber);
+            if (boardEntity == null) return IncreaseViewCountResponseDto.notExistBoard();
+
+            boardEntity.increaseViewCount();
+            boardRepository.save(boardEntity);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+        return IncreaseViewCountResponseDto.success();
     }
 
 }
