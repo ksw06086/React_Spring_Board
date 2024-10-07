@@ -1,5 +1,6 @@
 package com.swkim.myboard.entity;
 
+import com.swkim.myboard.dto.request.board.PatchBoardRequestDto;
 import com.swkim.myboard.dto.request.board.PostBoardRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -55,5 +56,10 @@ public class BoardEntity {
 
     public void decreaseFavoriteCount() {
         this.favoriteCount--;
+    }
+
+    public void patchBoard(PatchBoardRequestDto dto) {
+        this.title = dto.getTitle();
+        this.content = dto.getContent();
     }
 }

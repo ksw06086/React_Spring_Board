@@ -1,5 +1,6 @@
 package com.swkim.myboard.controller;
 
+import com.swkim.myboard.dto.request.board.PatchBoardRequestDto;
 import com.swkim.myboard.dto.request.board.PostBoardRequestDto;
 import com.swkim.myboard.dto.request.board.PostCommentRequestDto;
 import com.swkim.myboard.dto.response.board.*;
@@ -67,6 +68,16 @@ public class BoardController {
             @AuthenticationPrincipal String email
     ) {
         ResponseEntity<? super PutFavoriteResponseDto> response = boardService.putFavorite(boardNumber, email);
+        return response;
+    }
+
+    @PatchMapping("/{boardNumber}")
+    public ResponseEntity<? super PatchBoardResponseDto> patchBoard(
+            @RequestBody @Valid PatchBoardRequestDto dto,
+            @PathVariable("boardNumber") Integer boardNumber,
+            @AuthenticationPrincipal String email
+    ) {
+        ResponseEntity<? super PatchBoardResponseDto> response = boardService.patchBoard(dto, boardNumber, email);
         return response;
     }
 
