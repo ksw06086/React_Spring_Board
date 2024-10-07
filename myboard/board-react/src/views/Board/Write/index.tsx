@@ -2,13 +2,13 @@ import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 import './style.css'
 import { useBoardStore, useLoginUserStore } from 'stores';
 import { useNavigate } from 'react-router-dom';
-import { MAIN_PATH } from 'constant';
+import { MAIN_PATH } from '../../../constants';
 import { useCookies } from 'react-cookie';
 
 // component: 게시물 작성 화면 컴포넌트 //
 export default function BoardWrite() {
-
-  // state: 본문 영역 요소 참조 상태 //
+  
+  // state: 제목 영역 요소 참조 상태 //
   const titleRef = useRef<HTMLTextAreaElement | null>(null);
   // state: 본문 영역 요소 참조 상태 //
   const contentRef = useRef<HTMLTextAreaElement | null>(null);

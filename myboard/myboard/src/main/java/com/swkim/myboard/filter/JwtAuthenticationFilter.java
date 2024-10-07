@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.swkim.myboard.provider.JwtProvider;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,7 +21,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 @Component
-public class JwtAuthencationFilter extends OncePerRequestFilter{
+@RequiredArgsConstructor
+public class JwtAuthenticationFilter extends OncePerRequestFilter{
 
 	// request가 들어왔을 때 Request Header의 Authorization 필드의 Bearer Token을 가져옴
 	// 가져온 토큰을 검증하고 검증 결과를 SecurityContext에 추가
@@ -47,14 +49,15 @@ public class JwtAuthencationFilter extends OncePerRequestFilter{
 			}
 
 			// SecurityContext에 추가할 객체
-			AbstractAuthenticationToken authentication =
+			AbstractAuthenticationToken authenticationToken =
 					new UsernamePasswordAuthenticationToken(email,  null, AuthorityUtils.NO_AUTHORITIES);
-			authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+			authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
 			// SecurityContextd에 AbstractAuthenticationToken 객체를 추가해서
 			// 해당 Thread가 지속적으로 인증 정보를 가질 수 있도록 해줌
 			SecurityContext securityContext = SecurityContextHolder.createEmptyContext(); // 빈 컨텍스트
-			securityContext.setAuthentication(authentication);
+			securityContext.setAuthentication(authenticationToken);
+
 			SecurityContextHolder.setContext(securityContext);
 		} catch (Exception e) {
 			e.printStackTrace();

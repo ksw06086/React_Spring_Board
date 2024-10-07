@@ -21,7 +21,7 @@ public class CommentEntity {
     private int commentNumber;
     private String content;
     private String writeDatetime;
-    private String email;
+    private String userEmail;
     private int boardNumber;
 
     public CommentEntity(PostCommentRequestDto dto, Integer boardNumber, String email) {
@@ -29,9 +29,9 @@ public class CommentEntity {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String writeDatetime = simpleDateFormat.format(now);
 
-        this.content = dto.getComment();
+        this.content = dto.getContent();
         this.writeDatetime = writeDatetime;
-        this.email = email;
+        this.userEmail = email;
         this.boardNumber = boardNumber;
     }
 }

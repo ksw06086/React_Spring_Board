@@ -1,7 +1,7 @@
 import { useState, ChangeEvent, useRef, KeyboardEvent, useEffect } from 'react'
 import './style.css'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import { AUTH_PATH, BOARD_DETAIL_PATH, BOARD_PATH, BOARD_UPDATE_PATH, BOARD_WRITE_PATH, MAIN_PATH, SEARCH_PATH, USER_PATH } from 'constant';
+import { AUTH_PATH, BOARD_DETAIL_PATH, BOARD_PATH, BOARD_UPDATE_PATH, BOARD_WRITE_PATH, MAIN_PATH, SEARCH_PATH, USER_PATH } from '../../constants';
 import { useCookies } from 'react-cookie';
 import { useBoardStore, useLoginUserStore } from 'stores';
 import { fileUploadRequest, postBoardRequest } from 'apis';
@@ -101,8 +101,8 @@ export default function Header() {
         );
     }
 
-    // component: 마이페이지 버튼 컴포넌트 //
-    const MyPageButton = () => {
+    // component: 로그인 또는 마이페이지 버튼 컴포넌트 //
+    const LoginMyPageButton = () => {
 
         // state: userEmail path variable 상태 //
         const { userEmail } = useParams();
@@ -220,7 +220,7 @@ export default function Header() {
                 </div>
                 <div className='header-right-box'>
                     {(isAuthPage || isMainPage || isSearchPage || isBoardDetailPage) && <SearchButton />}
-                    {(isMainPage || isBoardDetailPage || isSearchPage || isUserPage) && <MyPageButton />}
+                    {(isMainPage || isBoardDetailPage || isSearchPage || isUserPage) && <LoginMyPageButton />}
                     {(isBoardWritePage || isBoardUpdatePage) && <UploadButton />}
                 </div>
             </div>

@@ -28,7 +28,7 @@ public class GetBoardResponseDto extends ResponseDto {
         this.boardNumber = resultSet.getBoardNumber();
         this.title = resultSet.getTitle();
         this.content = resultSet.getContent();
-        this.boardImageList = imageEntities.stream().map( imageEntity -> imageEntity.getImage()).toList();
+        this.boardImageList = imageEntities.stream().map( imageEntity -> imageEntity.getImage() ).toList();
         this.writeDatetime = resultSet.getWriteDatetime();
         this.writerEmail = resultSet.getWriterEmail();
         this.writerNickname = resultSet.getWriterNickname();

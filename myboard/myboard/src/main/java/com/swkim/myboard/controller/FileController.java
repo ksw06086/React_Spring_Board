@@ -17,7 +17,7 @@ public class FileController {
 
     @PostMapping("/upload")
     public String upload(
-        @RequestParam("file")MultipartFile file
+        @RequestParam("file") MultipartFile file
     ) {
        String url = fileService.upload(file);
        return url;

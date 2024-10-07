@@ -1,16 +1,16 @@
 ### 게시물 상세정보 조회 api
-GET http://localhost:9000/api/v1/board/4
+GET http://localhost:9000/api/v1/board/5
 
 ### 게시물 좋아요 리스트 조회 api
 GET http://localhost:9000/api/v1/board/4/favorite-list
 
 ### 게시물 댓글 리스트 조회 api
-GET http://localhost:9000/api/v1/board/4/comment-list
+GET http://localhost:9000/api/v1/board/5/comment-list
 
 ### 게시물 작성 api
 POST http://localhost:9000/api/v1/board
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3MDA1NDMxMzAsImV4cCI6MTcwMDU0NjczMH0.mo9mZ8ibV1kAFQXImO-iZSpS8CohQ12iOGzvvscgOXI
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrc3cwNjA4NkB1bmlvbmMuY28ua3IiLCJpYXQiOjE3MjgwMDA3MDAsImV4cCI6MTcyODAwNDMwMH0.AEQrkgABZYCqr-D_HydvZkgRTq23Lgpu4Ai_Fr1QUzM
 
 {
   "title": "제목입니다.",
@@ -22,18 +22,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpY
 }
 
 ### 댓글 작성 api
-POST http://localhost:9000/api/v1/board/4/comment
+POST http://localhost:9000/api/v1/board/5/comment
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3MDM4MTExMzUsImV4cCI6MTcwMzgxNDczNX0.s7-j9jNSyA0-7ClSJc_TJcA-GEW9k_2OzmFJyVIcYbs
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrc3cwNjA4NkB1bmlvbmMuY28ua3IiLCJpYXQiOjE3MjgwMDA3MDAsImV4cCI6MTcyODAwNDMwMH0.AEQrkgABZYCqr-D_HydvZkgRTq23Lgpu4Ai_Fr1QUzM
 
 {
-  "comment": "내용입니다."
+  "content": "내용입니다."
 }
 
 ### 좋아요 기능 API
-PUT http://localhost:9000/api/v1/board/4/favorite
+PUT http://localhost:9000/api/v1/board/5/favorite
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3MDEzMDUzNTUsImV4cCI6MTcwMTMwODk1NX0.ajOsBCXu6bUlSPI_PdSZrf7l6gtr0BVA4gkefevXWzo
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrc3cwNjA4NkB1bmlvbmMuY28ua3IiLCJpYXQiOjE3MjgwMDA3MDAsImV4cCI6MTcyODAwNDMwMH0.AEQrkgABZYCqr-D_HydvZkgRTq23Lgpu4Ai_Fr1QUzM
 
 ### 게시물 작성 파일과 데이터 같이 요청
 POST http://localhost:9000/api/v1/board

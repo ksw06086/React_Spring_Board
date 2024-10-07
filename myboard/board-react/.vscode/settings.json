@@ -1,3 +1,131 @@
 {
-    "workbench.colorTheme": "GitHub Dark"
+    "workbench.colorTheme": "GitHub Dark",
+    "better-comments.tags": [
+        {
+            "tag": "description",
+            "color": "rgba(0, 0, 0, 0.7)",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "rgba(182, 182, 182, 0.5)",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "component",
+            "color": "rgba(0, 0, 0, 0.7)",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "rgba(30, 255, 182, 0.5)",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "interface",
+            "color": "rgba(0, 0, 0, 0.7)",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "rgba(30, 182, 255, 0.5)",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "function",
+            "color": "rgba(255, 255, 255, 1)",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "rgba(182, 30, 255, 0.5)",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "state",
+            "color": "rgba(0, 0, 0, 0.7)",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "rgba(152, 255, 255, 0.5)",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "event handler",
+            "color": "rgba(0, 0, 0, 0.7)",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "rgba(152, 152, 255, 0.5)",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "effect",
+            "color": "rgba(255, 255, 255, 1)",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "rgba(0, 0, 255, 0.3)",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "render",
+            "color": "rgba(0, 0, 0, 0.7)",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "rgba(255, 100, 100, 0.3)",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "variable",
+            "color": "rgba(0, 0, 0, 0.7)",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "rgba(0, 255, 0, 0.3)",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "!",
+            "color": "#FF2D00",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "?",
+            "color": "#3498DB",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "//",
+            "color": "#474747",
+            "strikethrough": true,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "todo",
+            "color": "#FF8C00",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "*",
+            "color": "#98C379",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        }
+    ],
 }

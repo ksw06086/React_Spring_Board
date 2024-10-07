@@ -1,5 +1,6 @@
 package com.swkim.myboard.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +13,7 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.swkim.myboard.filter.JwtAuthencationFilter;
+import com.swkim.myboard.filter.JwtAuthenticationFilter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,9 +22,10 @@ import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class WebSecurityConfig {
 	
-	@Autowired private JwtAuthencationFilter jwtAuthencationFilter;
+	private final JwtAuthenticationFilter jwtAuthenticationFilter;
 	
 	@Bean
 	protected SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
@@ -45,7 +47,7 @@ public class WebSecurityConfig {
 			// 실패하면 만든 FailedAuthenticationEntryPoint() 반환 값 반환해줌
 			.exceptionHandling().authenticationEntryPoint(new FailedAuthenticationEntryPoint());
 			
-		httpSecurity.addFilterBefore(jwtAuthencationFilter, UsernamePasswordAuthenticationFilter.class);
+		httpSecurity.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 		
 		return httpSecurity.build();
 	}
@@ -58,7 +60,7 @@ class FailedAuthenticationEntryPoint implements AuthenticationEntryPoint {
 	public void commence(HttpServletRequest request, HttpServletResponse response,
 						 AuthenticationException authException) throws IOException, ServletException {
 		response.setContentType("application/json");
-		response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 		response.getWriter().write("{ \"code\": \"AF\", \"message\": \"Authorization Failed\" }");
 	}
 }

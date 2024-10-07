@@ -6,7 +6,7 @@ import { signInRequest, signUpRequest } from 'apis';
 import { SignInResponseDto, SignUpResponseDto } from 'apis/response/auth';
 import { ResponseDto } from 'apis/response';
 import { useCookies } from 'react-cookie';
-import { MAIN_PATH } from 'constant';
+import { MAIN_PATH } from '../../constants';
 import { useNavigate } from 'react-router-dom';
 import { Address, useDaumPostcodePopup } from 'react-daum-postcode';
 
@@ -239,6 +239,7 @@ export default function Authentication() {
 
             if(code !== 'SU') return;
 
+            alert('회원가입이 정상적으로 완료되었습니다.');
             setView('sign-in');
         }
 
@@ -384,6 +385,7 @@ export default function Authentication() {
                 setAddressErrorMessage('주소를 선택해주세요.');
             }
             if(!agreedPersonal) setAgreedPersonalError(true);
+
             if(!hasNickname || !isTelNumberPattern || !hasAddress || !agreedPersonal) return;
 
             const requestBody: SignUpRequestDto = {

@@ -15,9 +15,9 @@ public class JwtProvider {
 
     // JWT 생성 및 검증을 위한 키
     @Value("${secret-key}")
-    private String SECURITY_KEY ; // 이걸로 암호화/복호화
+    private String SECURITY_KEY; // 이걸로 암호화/복호화
 
-    // JWT 생성하는 메서드b
+    // JWT 생성 메서드
     public String create (String email) {
         // 만료날짜를 현재 날짜 + 1시간으로 설정
         Date expiredDate = Date.from(Instant.now().plus(1, ChronoUnit.HOURS));

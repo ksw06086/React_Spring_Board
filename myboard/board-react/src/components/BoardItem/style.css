@@ -6,6 +6,8 @@
     display: flex;
     align-items: center;
     gap: 30px;
+
+    cursor: pointer;
 }
 
 .board-list-item:hover {

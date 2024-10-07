@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import Footer from 'layouts/Footer'
 import Header from 'layouts/Header'
-import { AUTH_PATH } from 'constant';
+import { AUTH_PATH } from '../../constants';
 
 // component: 레이아웃 //
 export default function Container() {

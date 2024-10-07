@@ -13,10 +13,9 @@
     gap: 20px;
 }
 
-.board-detail-top {
+#board-detail-top {
     display: flex;
     flex-direction: column;
-
     gap: 40px;
 }
 

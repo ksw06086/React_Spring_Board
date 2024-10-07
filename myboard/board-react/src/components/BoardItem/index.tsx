@@ -24,7 +24,7 @@ export default function BoardItem({ boardListItem }: Props) {
     // navigator(boardNumber);
   }
 
-  // render : Board List Item 컴포넌트 랜더링
+  // render : Board List Item 컴포넌트 랜더링  //
   return (
     <div className='board-list-item' onClick={onClickHandler}>
       <div className='board-list-item-main-box'>

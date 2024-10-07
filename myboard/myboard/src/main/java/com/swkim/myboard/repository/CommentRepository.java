@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -20,11 +21,14 @@ public interface CommentRepository extends JpaRepository<CommentEntity, Integer>
             C.content AS content
         FROM comment AS C
         INNER JOIN user AS U
-        ON C.email = U.email
+        ON C.userEmail = U.email
         WHERE C.boardNumber = :boardNumber
         ORDER BY writeDatetime DESC
         """
     )
     List<GetCommentListResultSet> getCommentList(Integer boardNumber);
+
+    @Transactional
+    void deleteByBoardNumber(Integer boardNumber);
 
 }
