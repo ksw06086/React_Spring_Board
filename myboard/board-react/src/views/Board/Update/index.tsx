@@ -4,6 +4,10 @@ import { useBoardStore, useLoginUserStore } from 'stores';
 import { useNavigate, useParams } from 'react-router-dom';
 import { MAIN_PATH } from '../../../constants';
 import { useCookies } from 'react-cookie';
+import { getBoardRequest } from 'apis';
+import { GetBoardResponseDto } from 'apis/response/board';
+import { ResponseDto } from 'apis/response';
+import { convertUrlsToFile } from 'utils';
 
 // component: 게시물 수정 화면 컴포넌트 //
 export default function BoardWrite() {
@@ -32,7 +36,35 @@ export default function BoardWrite() {
   const [ imageUrls, setImageUrls ] = useState<string[]>([]);
 
   // function: 네비게이트 함수              //
-  const navigate = useNavigate();
+  const navigator = useNavigate();
+
+  // function: get board response 처리 함수              //
+  const getBoardResponse = (responseBody: GetBoardResponseDto | ResponseDto | null) => {
+    if (!responseBody) return;
+    const {code} = responseBody;
+    if (code === 'NB') alert('존재하지 않는 게시물입니다.');
+    if (code === 'DBE') alert('데이터베이스 오류입니다.');
+    if (code !== 'SU') {
+      navigator(MAIN_PATH());
+      return;
+    }
+
+    const { title, content, boardImageList, writerEmail } = responseBody as GetBoardResponseDto;
+    setTitle(title);
+    setContent(content);
+    setImageUrls(boardImageList);
+    convertUrlsToFile(boardImageList).then(boardImageFileList => setBoardImageFileList(boardImageFileList));
+
+    if (!loginUser || loginUser.email !== writerEmail) {
+      navigator(MAIN_PATH());
+      return;
+    }
+
+    
+    if (!titleRef.current) return;
+    titleRef.current.style.height = 'auto';
+    titleRef.current.style.height = `${titleRef.current.scrollHeight}px`;
+  }
 
   // event handler: 제목 변경 이벤트 처리   //
   const ontitleChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -91,9 +123,11 @@ export default function BoardWrite() {
   useEffect(() => {
     const accessToken = cookies.accessToken;
     if (!accessToken) {
-      navigate(MAIN_PATH());
+      navigator(MAIN_PATH());
       return;
     }
+    if (!boardNumber) return;
+    getBoardRequest(boardNumber).then(getBoardResponse);
   }, [boardNumber]);
   
   // render: 게시물 수정 화면 컴포넌트 랜더링 //
