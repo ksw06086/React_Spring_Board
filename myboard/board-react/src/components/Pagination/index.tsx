@@ -13,7 +13,7 @@ interface Props {
 }
 
 //      component: 페이지네이션 컴포넌트      //
-export default function pagination(props: Props) { 
+export default function Pagination(props: Props) { 
 
   //      state: Properties      //
   const { currentPage, currentSection, viewPageList, totalSection } = props;
