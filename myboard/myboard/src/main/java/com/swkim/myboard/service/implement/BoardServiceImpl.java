@@ -5,17 +5,13 @@ import com.swkim.myboard.dto.request.board.PostBoardRequestDto;
 import com.swkim.myboard.dto.request.board.PostCommentRequestDto;
 import com.swkim.myboard.dto.response.ResponseDto;
 import com.swkim.myboard.dto.response.board.*;
-import com.swkim.myboard.entity.BoardEntity;
-import com.swkim.myboard.entity.CommentEntity;
-import com.swkim.myboard.entity.FavoriteEntity;
-import com.swkim.myboard.entity.ImageEntity;
+import com.swkim.myboard.entity.*;
 import com.swkim.myboard.repository.*;
 import com.swkim.myboard.repository.resultSet.GetBoardResultSet;
 import com.swkim.myboard.repository.resultSet.GetCommentListResultSet;
 import com.swkim.myboard.repository.resultSet.GetFavoriteListResultSet;
 import com.swkim.myboard.service.BoardService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +27,7 @@ public class BoardServiceImpl implements BoardService {
     private final ImageRepository imageRepository;
     private final FavoriteRepository favoriteRepository;
     private final CommentRepository commentRepository;
+    private final BoardListViewRepository boardListViewRepository;
 
     @Override
     public ResponseEntity<? super GetBoardResponseDto> getBoard(Integer boardNumber) {
@@ -90,6 +87,23 @@ public class BoardServiceImpl implements BoardService {
         }
 
         return GetCommentListResponseDto.success(resultSets);
+    }
+
+    @Override
+    public ResponseEntity<? super GetLatestBoardListResponseDto> getLatestBoardList() {
+
+        List<BoardListViewEntity> boardListViewEntities = new ArrayList<>();
+
+        try {
+
+            boardListViewEntities = boardListViewRepository.findByOrderByWriteDatetimeDesc();
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+        return GetLatestBoardListResponseDto.success(boardListViewEntities);
     }
 
     @Override
