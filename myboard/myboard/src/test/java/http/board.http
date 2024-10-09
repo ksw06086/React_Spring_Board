@@ -13,6 +13,12 @@ GET http://localhost:9000/api/v1/board/latest-list
 ### 주간 Top3 리스트 불러오기 api
 GET http://localhost:9000/api/v1/board/top-3
 
+### 검색 게시물 리스트 불러오기 api
+GET http://localhost:9000/api/v1/board/search-list/너
+
+### 검색 게시물 리스트 불러오기 api
+GET http://localhost:9000/api/v1/board/search-list/나/너
+
 ### 게시물 작성 api
 POST http://localhost:9000/api/v1/board
 Content-Type: application/json

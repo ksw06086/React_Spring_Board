@@ -16,7 +16,7 @@ public interface SearchLogRepository extends JpaRepository<SearchLogEntity, Inte
     @Query(
         value=
             "SELECT " +
-            "search_word, count(search_word) AS count " +
+            "search_word AS searchWord, count(search_word) AS count " +
             "FROM search_log " +
             "WHERE relation IS FALSE " +
             "GROUP BY search_word " +
