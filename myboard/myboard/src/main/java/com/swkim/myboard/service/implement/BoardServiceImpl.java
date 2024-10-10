@@ -5,6 +5,7 @@ import com.swkim.myboard.dto.request.board.PostBoardRequestDto;
 import com.swkim.myboard.dto.request.board.PostCommentRequestDto;
 import com.swkim.myboard.dto.response.ResponseDto;
 import com.swkim.myboard.dto.response.board.*;
+import com.swkim.myboard.dto.response.user.GetUserBoardListResponseDto;
 import com.swkim.myboard.entity.*;
 import com.swkim.myboard.repository.*;
 import com.swkim.myboard.repository.resultSet.GetBoardResultSet;
@@ -155,6 +156,26 @@ public class BoardServiceImpl implements BoardService {
         }
 
         return GetSearchBoardListResponseDto.success(boardListViewEntities);
+    }
+
+    @Override
+    public ResponseEntity<? super GetUserBoardListResponseDto> getUserBoardList(String email) {
+
+        List<BoardListViewEntity> boardListViewEntities = new ArrayList<>();
+
+        try {
+
+            boolean existedUser = userRepository.existsByEmail(email);
+            if (!existedUser) return GetUserBoardListResponseDto.noExistUser();
+
+            boardListViewEntities = boardListViewRepository.findByWriterEmailOrderByWriteDatetimeDesc(email);
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+        return GetUserBoardListResponseDto.success(boardListViewEntities);
     }
 
     @Override
