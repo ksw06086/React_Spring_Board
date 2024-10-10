@@ -2,3 +2,7 @@
 GET http://localhost:9000/api/v1/user
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE2OTk0MTk0NzAsImV4cCI6MTY5OTQyMzA3MH0.njiaMJnIiIBMRKKImlPjETjPbyEyDg8q8qaxqRg7czU
+
+### 유저 정보 가져오기
+GET http://localhost:9000/api/v1/user/ksw06086@unionc.co
+Content-Type: application/json
