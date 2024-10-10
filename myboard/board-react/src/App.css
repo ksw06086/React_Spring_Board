@@ -42,6 +42,15 @@
     justify-content: center;
 }
 
+.icon-box-large {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .black-button {
     border-radius: 46px;
     width: 95px;
@@ -204,6 +213,10 @@
     background-image: url(assets/image/image-box-light.png);
 }
 
+.image-box-white-light-icon {
+    background-image: url(assets/image/image-box-white-light.png);
+}
+
 .close-icon {
     background-image: url(assets/image/close.png);
 }
@@ -230,4 +243,8 @@
 
 .comment-icon {
     background-image: url(assets/image/chat-light.png);
+}
+
+.edit-icon {
+    background-image: url(assets/image/edit-light.png);
 }
