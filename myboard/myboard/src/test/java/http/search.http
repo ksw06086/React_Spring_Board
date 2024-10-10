@@ -1,2 +1,5 @@
 ### 인기 검색어 리스트 조회 api
 GET http://localhost:9000/api/v1/search/popular-list
+
+### 연관 검색어 리스트 조회 api
+GET http://localhost:9000/api/v1/search/너/relation-list

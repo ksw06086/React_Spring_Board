@@ -2,8 +2,10 @@ package com.swkim.myboard.service.implement;
 
 import com.swkim.myboard.dto.response.ResponseDto;
 import com.swkim.myboard.dto.response.search.GetPopularListResponseDto;
+import com.swkim.myboard.dto.response.search.GetRelationListResponseDto;
 import com.swkim.myboard.repository.SearchLogRepository;
 import com.swkim.myboard.repository.resultSet.GetPopularListResultSet;
+import com.swkim.myboard.repository.resultSet.GetRelationListResultSet;
 import com.swkim.myboard.service.SearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -33,5 +35,22 @@ public class SearchServiceImpl implements SearchService {
         }
 
         return GetPopularListResponseDto.success(resultSets);
+    }
+
+    @Override
+    public ResponseEntity<? super GetRelationListResponseDto> getRelationList(String searchWord) {
+
+        List<GetRelationListResultSet> resultSets = new ArrayList<>();
+
+        try {
+
+            resultSets = searchLogRepository.getRelationList(searchWord);
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+        return GetRelationListResponseDto.success(resultSets);
     }
 }
